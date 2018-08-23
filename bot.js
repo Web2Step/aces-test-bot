@@ -207,7 +207,7 @@ client.on('message', message => {
 			 } else {
              console.log('GET URL FARM: '+url);
              var info =  body;
-             if (IsJson(info) == false) { message.reply('Что-то пошло не так.. '); console.log('Error URL: '+url); return; }
+             if (IsJson(info) === false) { message.reply('Что-то пошло не так.. '); console.log('Error URL: '+url); return; }
 			 var icon = 'http://ddragon.leagueoflegends.com/cdn/'+info.apiImageVersion+'/img/profileicon/'+info.profileIconId+'.png';
 			 var avatar = message.author.avatarURL;
 			 var roles = info.roles;
