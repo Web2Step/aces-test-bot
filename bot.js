@@ -25,7 +25,7 @@ isArray = function(a) {
 };
 // -------------------------------------------//
 
-// ----------- FUNCTION ISJSON --------------- //
+// ----------- FUNCTION ISJSON - НЕ ПАШЕТ КАК НАДО?!! --------------- //
 function IsJson(str) {
     try {
         JSON.parse(str);
@@ -207,7 +207,7 @@ client.on('message', message => {
 			 } else {
              console.log('GET URL FARM: '+url);
              var info =  body;
-             if (IsJson(info) === false) { message.reply('Что-то пошло не так.. '); console.log('Error URL: '+url); return; }
+             if (info.name === undefined) { message.reply('Таких здесь нет..'); console.log('Error URL: '+url); return; }
 			 var icon = 'http://ddragon.leagueoflegends.com/cdn/'+info.apiImageVersion+'/img/profileicon/'+info.profileIconId+'.png';
 			 var avatar = message.author.avatarURL;
 			 var roles = info.roles;
