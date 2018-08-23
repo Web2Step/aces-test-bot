@@ -25,6 +25,18 @@ isArray = function(a) {
 };
 // -------------------------------------------//
 
+// ----------- FUNCTION ISJSON --------------- //
+function IsJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+// ----------- FUNCTION ISJSON --------------- //
+
+
 // ----------- FUNCTION BELT_Send ------------------------------- //
 function Belt_Send(channel,info) {
                 const embed = new Discord.RichEmbed();
@@ -195,6 +207,7 @@ client.on('message', message => {
 			 } else {
              console.log('GET URL FARM: '+url);
              var info =  body;
+             if (IsJson(info) == false) { message.reply('Что-то пошло не так.. '); console.log('Error URL: '+url); return; }
 			 var icon = 'http://ddragon.leagueoflegends.com/cdn/'+info.apiImageVersion+'/img/profileicon/'+info.profileIconId+'.png';
 			 var avatar = message.author.avatarURL;
 			 var roles = info.roles;
