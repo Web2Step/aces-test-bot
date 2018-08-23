@@ -203,11 +203,11 @@ client.on('message', message => {
 			 if (error) {
 				 console.log(error);
                  if (error == 'ESOCKETTIMEDOUT') message.reply(', попробуй чуть позже.. Проблемка! :robot:');
-                 else message.reply(me + ', у меня траблы!.. ['+error+'] :robot:');
+                 else message.reply(', у меня траблы!.. ['+error+'] :robot:');
 			 } else {
              console.log('GET URL FARM: '+url);
              var info =  body;
-             if (info.name === undefined) { message.reply('Таких здесь нет.. либо у меня начались проблемы?'); console.log('Error URL: '+url); return; }
+             if ('name' in info === false) { message.reply('Таких здесь нет.. либо у меня начались проблемы?'); console.log('Error URL: '+url); return; }
 			 var icon = 'http://ddragon.leagueoflegends.com/cdn/'+info.apiImageVersion+'/img/profileicon/'+info.profileIconId+'.png';
 			 var avatar = message.author.avatarURL;
 			 var roles = info.roles;
