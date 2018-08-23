@@ -193,7 +193,8 @@ client.on('message', message => {
                  if (error == 'ESOCKETTIMEDOUT') message.reply(', попробуй чуть позже.. Проблемка! :robot:');
                  else message.reply(me + ', у меня траблы!.. ['+error+'] :robot:');
 			 } else {
-			 var info =  body;
+             console.log('GET URL FARM: '+url);
+             var info =  body;
 			 var icon = 'http://ddragon.leagueoflegends.com/cdn/'+info.apiImageVersion+'/img/profileicon/'+info.profileIconId+'.png';
 			 var avatar = message.author.avatarURL;
 			 var roles = info.roles;
@@ -203,7 +204,7 @@ client.on('message', message => {
 			 else active='Не в клубе';
              console.log('Farm Name: '+info.name);
              // БАГ без имени?
-             if (info.name === undefined) { message.reply('Ошибка доступа.. попробуйте позднее'); console.log('Error: '+info); return; }
+             if (info.name === undefined) { message.reply('Ошибка доступа.. попробуйте позднее'); console.log('Error URL: '+url); return; }
 
 					const embed = new Discord.RichEmbed()
 					.setTitle("Профиль игрока: "+info.name.toUpperCase())
