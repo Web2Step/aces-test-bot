@@ -39,28 +39,31 @@ function IsJson(str) {
 
 // ----------- FUNCTION BELT_Send ------------------------------- //
 function Belt_Send(channel,info) {
-                const embed = new Discord.RichEmbed();
-                //if (info.show_who !== false) embed.setAuthor(me + ' запрашивает..', avatar);
-                if (info.author_name !== undefined && info.author_name !== null) embed.setAuthor(info.author_name, info.author_avatar);
-                if (info.title !== undefined && info.title !== null) embed.setTitle(info.title);
-                if (info.color !== undefined) embed.setColor(info.color);
-                if (info.description !== undefined) embed.setDescription(info.description);
-                if (info.footer !== undefined) embed.setFooter(info.footer, info.footer_icon);
-                if (info.image !== undefined) embed.setImage(info.image);    //- ФОТКА НА ПОЛЭКРАНА!!!
-                if (info.thumbnail !== undefined) embed.setThumbnail(info.thumbnail);
-                if (info.timestamp !== undefined) embed.setTimestamp();
-                if (info.url !== undefined) embed.setURL(info.url);
+                if (info === undefined) channel.send('Нет данных из источника.. [undefined] :confused:');
+                 else {
+                    const embed = new Discord.RichEmbed();
+                    //if (info.show_who !== false) embed.setAuthor(me + ' запрашивает..', avatar);
+                    if (info.author_name !== undefined && info.author_name !== null) embed.setAuthor(info.author_name, info.author_avatar);
+                    if (info.title !== undefined && info.title !== null) embed.setTitle(info.title);
+                    if (info.color !== undefined) embed.setColor(info.color);
+                    if (info.description !== undefined) embed.setDescription(info.description);
+                    if (info.footer !== undefined) embed.setFooter(info.footer, info.footer_icon);
+                    if (info.image !== undefined) embed.setImage(info.image);    //- ФОТКА НА ПОЛЭКРАНА!!!
+                    if (info.thumbnail !== undefined) embed.setThumbnail(info.thumbnail);
+                    if (info.timestamp !== undefined) embed.setTimestamp();
+                    if (info.url !== undefined) embed.setURL(info.url);
 
-                // -------- СОЗДАТЬ СЕТКУ ЗНАЧЕНИЙ -------
-                var fields = info.fields;
-                if (typeof info == 'array') fields.forEach(function (field) {
-                    if (field['insertline'] !== false) embed.addBlankField(field['insertline_group']);
-                    embed.addField(field['title'], field['value'], field['group']);
-                    //console.log(field);
-                });
-                // ----------------------------------------
-                //client.channels.get(info.guild_channel).send({embed});
-                channel.send({embed});
+                    // -------- СОЗДАТЬ СЕТКУ ЗНАЧЕНИЙ -------
+                    var fields = info.fields;
+                    if (typeof info == 'array') fields.forEach(function (field) {
+                        if (field['insertline'] !== false) embed.addBlankField(field['insertline_group']);
+                        embed.addField(field['title'], field['value'], field['group']);
+                        //console.log(field);
+                    });
+                    // ----------------------------------------
+                    //client.channels.get(info.guild_channel).send({embed});
+                    channel.send({embed});
+                }
 }
 // ----------------- FUNCTION BELT END ------------------------------ //
 
@@ -210,7 +213,7 @@ client.on('message', message => {
             if (error) {
                 console.log(error);
             } else {
-                var info =  body.body; // из тега БАДИ взять инфу
+                var info =  body; // из тега БАДИ взять инфу
                 console.log('BODY JSON: '+info);
                 let channel_belt = message.channel; // вывести туда откуда запросили
                 //if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
