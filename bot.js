@@ -171,6 +171,56 @@ client.on('message', message => {
 	}
     // ------------- FORCE COMMAND END ----------------- //
 
+
+    // START !META
+    else if (command === 'meta' || command === 'мета') {
+        //var param_send = null;
+        var param_send = 'source='+args[0];
+        //if ((command === 'bad') || (command === 'best')) param_send=args[1]; else param_send=args[0];
+        //if  (param_send === null) param_send=0;
+        //console.log('0-'+args[0]+'1-'+args[1]);
+
+        var url = '';
+        //if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        //else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = config.guild_site+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        //else if (((command==='best')&&(args[0]==='step')) || (command==='beststep')) url = config.guild_site+'/api/discord-bot/getbeststep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        //else if (((command==='best')&&(args[0]==='season')) || (command==='bestseason')) url = config.guild_site+'/api/discord-bot/getbestseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        //global.getdata = 'Нет данных';
+        url='http://cp.lol-info.ru/meta.php?'+param_send+'&json=true';
+		console.log('URL META: ' + url);
+
+        const request = require('request');
+        var baseRequest = request.defaults({
+            pool: false,
+            agent: false,
+            jar: true,
+            json: true,
+            timeout: 5000,
+            gzip: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        var options = {
+            url: url,
+            method: 'GET'
+        };
+        baseRequest(options, function(error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
+                var info =  body;
+                let channel_belt = message.channel; // вывести туда откуда запросили
+                //if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
+                Belt_Send(channel_belt,info);
+                console.log(info);
+            }
+        });
+    }
+// END !META
+
+
     // ------------- FARM COMMAND BEGIN ----------------- //
     if (command === 'farm' || command === 'club' || command === 'stat') {
 			let nick2 = param_str;
