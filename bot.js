@@ -189,7 +189,7 @@ client.on('message', message => {
         //else if (((command==='best')&&(args[0]==='step')) || (command==='beststep')) url = config.guild_site+'/api/discord-bot/getbeststep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
         //else if (((command==='best')&&(args[0]==='season')) || (command==='bestseason')) url = config.guild_site+'/api/discord-bot/getbestseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
         //global.getdata = 'Нет данных';
-        url='http://cp.lol-info.ru/meta.php?'+param_send+'&json=true';
+        url='http://cp.lol-info.ru/meta.php?'+param_send+'&json=true&mingames=250';
 		console.log('URL META: ' + url);
 
         const request = require('request');
