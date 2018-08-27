@@ -172,7 +172,7 @@ client.on('message', message => {
     // ------------- FORCE COMMAND END ----------------- //
 
 
-    // START !META
+    // ------------------- START !META ----------------------
     else if (command === 'meta' || command === 'мета') {
         //var param_send = null;
         var param_send = 'source='+args[0];
@@ -210,7 +210,7 @@ client.on('message', message => {
             if (error) {
                 console.log(error);
             } else {
-                var info =  body;
+                var info =  body.body; // из тега БАДИ взять инфу
                 let channel_belt = message.channel; // вывести туда откуда запросили
                 //if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
                 Belt_Send(channel_belt,info);
@@ -218,7 +218,7 @@ client.on('message', message => {
             }
         });
     }
-// END !META
+    // ---------------- END !META --------------------------- //
 
 
     // ------------- FARM COMMAND BEGIN ----------------- //
