@@ -53,7 +53,7 @@ function Belt_Send(channel,info) {
 
                 // -------- СОЗДАТЬ СЕТКУ ЗНАЧЕНИЙ -------
                 var fields = info.fields;
-                fields.forEach(function (field) {
+                if (typeof info == 'array') fields.forEach(function (field) {
                     if (field['insertline'] !== false) embed.addBlankField(field['insertline_group']);
                     embed.addField(field['title'], field['value'], field['group']);
                     //console.log(field);
@@ -115,7 +115,7 @@ function checkTop1(arg) {
 
                 // -------- СОЗДАТЬ СЕТКУ ЗНАЧЕНИЙ -------
                 var fields = info.fields;
-                if (typeof info == 'array') fields.forEach(function (field) {
+                fields.forEach(function (field) {
                     if (field['insertline'] !== false) embed.addBlankField(field['insertline_group']);
                     embed.addField(field['title'], field['value'], field['group']);
                     //console.log(field);
