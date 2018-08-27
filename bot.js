@@ -211,6 +211,7 @@ client.on('message', message => {
                 console.log(error);
             } else {
                 var info =  body.body; // из тега БАДИ взять инфу
+                console.log('BODY JSON: '+info);
                 let channel_belt = message.channel; // вывести туда откуда запросили
                 //if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
                 Belt_Send(channel_belt,info);
