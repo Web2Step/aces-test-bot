@@ -186,9 +186,6 @@ client.on('message', message => {
         var url = '';
         //if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
         //else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = config.guild_site+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-        //else if (((command==='best')&&(args[0]==='step')) || (command==='beststep')) url = config.guild_site+'/api/discord-bot/getbeststep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-        //else if (((command==='best')&&(args[0]==='season')) || (command==='bestseason')) url = config.guild_site+'/api/discord-bot/getbestseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-        //global.getdata = 'Нет данных';
         url='http://cp.lol-info.ru/meta.php?'+param_send+'&json=true&mingames=250';
 		console.log('URL META: ' + url);
 
@@ -224,9 +221,51 @@ client.on('message', message => {
     }
     // ---------------- END !META --------------------------- //
 
+    // ------------------- START !COUNTERPICK ----------------------
+    else if (command === 'контрапик' || command === 'counterpick' || command === 'кп' || command === 'cp') {
+        var param_send = 'champion='+args[0]+'&source='+args[1]+'&line='+args[2];
+        //if ((command === 'bad') || (command === 'best')) param_send=args[1]; else param_send=args[0];
+        var url = '';
+        //if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        //else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = config.guild_site+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+        url='http://cp.lol-info.ru/index.php.php?'+param_send+'&json=true&mingames=250';
+        console.log('URL COUNTERPICK: ' + url);
+
+        const request = require('request');
+        var baseRequest = request.defaults({
+            pool: false,
+            agent: false,
+            jar: true,
+            json: true,
+            timeout: 5000,
+            gzip: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        var options = {
+            url: url,
+            method: 'GET'
+        };
+        baseRequest(options, function(error, response, body) {
+            if (error) {
+                console.log(error);
+            } else {
+                var info =  body; // из тега БАДИ взять инфу
+                console.log('BODY JSON: '+info);
+                let channel_belt = message.channel; // вывести туда откуда запросили
+                //if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
+                Belt_Send(channel_belt,info);
+                console.log(info);
+            }
+        });
+    }
+    // ---------------- END !COUNTERPICK --------------------------- //
+
 
     // ------------- FARM COMMAND BEGIN ----------------- //
-    if (command === 'farm' || command === 'club' || command === 'stat') {
+    else if (command === 'farm' || command === 'club' || command === 'stat') {
 			let nick2 = param_str;
 			if (nick2.length > 2) {
 				nick_url=encodeURI(nick2);
