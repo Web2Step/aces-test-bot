@@ -228,7 +228,7 @@ client.on('message', message => {
         var url = '';
         //if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
         //else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = config.guild_site+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-        url='http://cp.lol-info.ru/index.php.php?'+param_send+'&json=true&mingames=250';
+        url='http://cp.lol-info.ru/index.php?'+param_send+'&json=true&mingames=250';
         console.log('URL COUNTERPICK: ' + url);
 
         const request = require('request');
