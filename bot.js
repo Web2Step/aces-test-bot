@@ -223,7 +223,7 @@ client.on('message', message => {
 
     // ------------------- START !COUNTERPICK ----------------------
     else if (command === 'контрапик' || command === 'counterpick' || command === 'кп' || command === 'cp') {
-        var param_send = 'champion='+args[0]+'&source='+args[1]+'&line='+args[2];
+        var param_send = 'champion='+encodeURI(args[0])+'&source='+encodeURI(args[1])+'&line='+encodeURI(args[2]);
         //if ((command === 'bad') || (command === 'best')) param_send=args[1]; else param_send=args[0];
         var url = '';
         //if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
