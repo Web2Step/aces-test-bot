@@ -8,6 +8,7 @@
     "342955899624751105":
     {
       "main_channel":"475386533516541952",
+      "tournament_role" : "Турнир",
       "site":"http://aces-now.lol-info.ru",
       "site_pub":"http://aces8se.lol-info.ru",
       "logo":"http://smiles.lol-info.ru/aces.png",
@@ -21,6 +22,7 @@
     "1222338678599581696":
     {
       "main_channel":"482274124144836608",
+      "tournament_role" : "Турнир",
       "site":"http://aces-now.lol-info.ru",
       "site_pub":"http://aces8se.lol-info.ru",
       "logo":"http://smiles.lol-info.ru/aces.png",

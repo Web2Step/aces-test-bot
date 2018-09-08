@@ -331,7 +331,7 @@ client.on('message', message => {
 					.setAuthor(me + ' запрашивает..', avatar)
 					.setColor(0x00AE86)
 					.setDescription("Клубные характеристики игрока")
-					.setFooter(config.footer_text, config.footer_logo)
+					.setFooter(guild.footer_text, guild.footer_logo)
 					//.setImage(mainpic)    //- ФОТКА НА ПОЛЭКРАНА!!!
 					.setThumbnail(icon)
 					.setTimestamp()
@@ -599,7 +599,7 @@ else	if (command === 'rating' || command === 'RATING') {
 		} else {
 		var info =  body;
 		console.log(body);
-		var icon = config.guild_logo;
+		var icon = guild.guild_logo;
 		var avatar = message.author.avatarURL;
 
 			  const embed = new Discord.RichEmbed()
@@ -607,7 +607,7 @@ else	if (command === 'rating' || command === 'RATING') {
 				.setAuthor(me + ' запрашивает..', avatar)
 				.setColor(0x00CE26)
 				.setDescription("Статистика по клубам!")
-				.setFooter(config.footer_text, config.footer_logo)
+				.setFooter(guild.footer_text, guild.footer_logo)
 				//.setImage(mainpic)    //- ФОТКА НА ПОЛЭКРАНА!!!
 				.setThumbnail(icon)
 				.setTimestamp()
@@ -707,7 +707,7 @@ else if (command === 'invite' || command === 'INVITE') {
     else if ((command === 'состав' && args[0] === 'турнир') || (command === 'tournament')){
         // ----- Конфиг сервера команды отсутствует ?! --------
         if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
-        let role_name = config.guild_tournament_role;
+        let role_name = guild.tournament_role;
         let role_find = message.guild.roles.find("name", role_name);
         //console.log(role_find);
         if (role_find !== null) {
@@ -723,8 +723,8 @@ else if (command === 'invite' || command === 'INVITE') {
             });
             //message.channel.send('Состав "'+config.guild_tournament_role+'" '+ role_members.length+' чел.: ' + members.join(', '));
             let  info = {};
-            info.author_name=null; info.title='Состав "'+config.guild_tournament_role+'" ['+ $members_count + ' чел.]'; info.color='#B6DB43'; info.description="``"+members.join(', ')+"``";
-            info.footer='Турниры клуба'; info.footer_icon=config.guild_logo;
+            info.author_name=null; info.title='Состав "'+guild.tournament_role+'" ['+ $members_count + ' чел.]'; info.color='#B6DB43'; info.description="``"+members.join(', ')+"``";
+            info.footer='Турниры клуба'; info.footer_icon=guild.logo;
             info.image=null;    //- ФОТКА НА ПОЛЭКРАНА!!!
             info.thumbnail='http://lol-info.ru/images/bots/aces/tournament.png'; info.timestamp=true; info.url=null;
             info.fields=[]; // field['title'], field['value'], field['group'], field['insertline']
@@ -734,7 +734,7 @@ else if (command === 'invite' || command === 'INVITE') {
             Belt_Send(channel_belt,info);
             //channel.send({embed});
         }
-        else message.channel.send('Роли '+config.guild_tournament_role+' не существует!');
+        else message.channel.send('Роли '+guild.tournament_role+' не существует!');
     }
 // END !СОСТАВ
 
