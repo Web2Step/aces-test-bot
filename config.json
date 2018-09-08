@@ -32,6 +32,10 @@
       "timer_check_top1_file" : "showchannel_top1.php"
     }
   },
+  "error" : {
+      "guild_command":"Дискорд-сервер для данной команды не определен!",
+      "site":"http://aces-now.lol-info.ru"
+  },
   "guild_main_channel" : "475386533516541952",
   "guild_site" : "http://aces-now.lol-info.ru",
   "guild_site_pub" : "http://aces8se.lol-info.ru",

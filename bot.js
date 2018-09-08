@@ -271,7 +271,7 @@ client.on('message', message => {
 
     // ------------- FARM COMMAND BEGIN ----------------- //
     else if (command === 'farm' || command === 'club' || command === 'stat') {
-            if (!isArray(guild)) { message.reply('Дискорд-сервер не определен!'); return; }
+            if (!isArray(guild)) { message.reply(config.error['guild_command']); return; }
 			let nick2 = param_str;
 			if (nick2.length > 2) {
 				nick_url=encodeURI(nick2);
