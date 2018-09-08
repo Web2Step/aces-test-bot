@@ -155,6 +155,7 @@ client.on('message', message => {
 
     // --- На каком сервере было сообщение ----------
     const guild_id = message.guild.id;
+    const guild = config.guild[guild_id]; // взять настройки конкретного клуба
 
     // --- Аргументы и команды ----------
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
@@ -275,7 +276,7 @@ client.on('message', message => {
 				nick_url=encodeURI(nick2);
 				nick = nick2;
 			}
-			var url = config.guild_site+'/api/discord-bot/getfarm.php?name='+nick_url+'&param='+args[0];
+			var url = guild['site']+'/api/discord-bot/getfarm.php?name='+nick_url+'&param='+args[0];
 			global.getdata = 'Нет данных';
 
 		  const request = require('request');
