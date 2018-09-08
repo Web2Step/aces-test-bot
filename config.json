@@ -12,7 +12,7 @@
       "site_pub":"http://aces8se.lol-info.ru",
       "logo":"http://smiles.lol-info.ru/aces.png",
       "footer_logo":"http://smiles.lol-info.ru/aces.png",
-      "footer_text":"http://smiles.lol-info.ru/aces.png",
+      "footer_text":"(c) ACES.LOL-INFO.RU CLUB",
       "timer_check_top1": 310000,
       "timer_check_top1_table" : "guild_bot_test",
       "timer_check_top1_channel" : "475386533516541952",
@@ -27,9 +27,9 @@
       "footer_logo":"http://smiles.lol-info.ru/aces.png",
       "footer_text":"http://smiles.lol-info.ru/aces.png",
       "timer_check_top1": 310000,
-      "timer_check_top1_table" : "guild_bot_test",
+      "timer_check_top1_table" : "guild_bot",
       "timer_check_top1_channel" : "482274124144836608",
-      "timer_check_top1_file" : "showchannel_top1_test.php"
+      "timer_check_top1_file" : "showchannel_top1.php"
     }
   },
   "guild_main_channel" : "475386533516541952",
