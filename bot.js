@@ -69,7 +69,7 @@ function Belt_Send(channel,info) {
 
 // ----------- FUNCTION TIMER1 ------------------------------- //
 function checkTop1(guild, arg) {
-    console.log('Checking '+guild['site']+'GID: '+arg+' ..');
+    console.log('Checking '+guild.site+' / GID: '+arg+' ..');
     let timer_check_top1_file;
     if (config.timer_check_top1_file>'') timer_check_top1_file = config.timer_check_top1_file;   else timer_check_top1_file = "showchannel_top1.php";
     let url = guild['site']+'/api/discord-bot/'+timer_check_top1_file+'?checkTop1Channel='+config.timer_check_top1_channel+'&checkTop1Table='+config.timer_check_top1_table+'&param=top1';
