@@ -143,7 +143,7 @@ client.on('ready', () => {
     var guilds = config.guild;
     for (var key in guilds) {
         console.log('GID: '+key+' set interval..');
-        setInterval(checkTop1, guilds[key], guilds[key]['timer_check_top1'], 'top1: '+key);
+        setInterval(checkTop1, guilds[key]['timer_check_top1'], guilds[key], 'top1: '+key);
     };
 });
 
