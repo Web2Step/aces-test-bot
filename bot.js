@@ -68,8 +68,8 @@ function Belt_Send(channel,info) {
 // ----------------- FUNCTION BELT END ------------------------------ //
 
 // ----------- FUNCTION TIMER1 ------------------------------- //
-function checkTop1(arg) {
-    console.log(`Checking ${arg} ..`);
+function checkTop1(guild, arg) {
+    console.log(`Checking '+guild['site']+'GID: ${arg} ..`);
     let timer_check_top1_file;
     if (config.timer_check_top1_file>'') timer_check_top1_file = config.timer_check_top1_file;   else timer_check_top1_file = "showchannel_top1.php";
     let url = guild['site']+'/api/discord-bot/'+timer_check_top1_file+'?checkTop1Channel='+config.timer_check_top1_channel+'&checkTop1Table='+config.timer_check_top1_table+'&param=top1';
@@ -138,7 +138,13 @@ function checkTop1(arg) {
 
 client.on('ready', () => {
     console.log('I am ready!');
-    setInterval(checkTop1, config.timer_check_top1, 'top1');
+    //setInterval(checkTop1, config.timer_check_top1, 'top1');
+    // Каждой гильдии свой таймер
+    var guilds = config.guild;
+    for (var key in guilds) {
+        console.log('GID: '+key+' set interval..');
+        setInterval(checkTop1, guilds[key], guilds[key]['timer_check_top1'], 'top1: '+key);
+    };
 });
 
 client.on('message', message => {
@@ -699,7 +705,9 @@ else if (command === 'invite' || command === 'INVITE') {
 
 // START !СОСТАВ турнира
     else if ((command === 'состав' && args[0] === 'турнир') || (command === 'tournament')){
-    	let role_name = config.guild_tournament_role;
+        // ----- Конфиг сервера команды отсутствует ?! --------
+        if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+        let role_name = config.guild_tournament_role;
         let role_find = message.guild.roles.find("name", role_name);
         //console.log(role_find);
         if (role_find !== null) {
@@ -722,7 +730,7 @@ else if (command === 'invite' || command === 'INVITE') {
             info.fields=[]; // field['title'], field['value'], field['group'], field['insertline']
             //client.channels.get(info.guild_channel).send({embed});
             let channel_belt = message.channel; // вывести туда откуда запросили
-            if (command === 'tournament') channel_belt= message.guild.channels.get(config.guild_main_channel); // вывести на главный канал
+            if (command === 'tournament') channel_belt= message.guild.channels.get(guild['main_channel']); // вывести на главный канал
             Belt_Send(channel_belt,info);
             //channel.send({embed});
         }
