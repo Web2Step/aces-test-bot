@@ -271,7 +271,9 @@ client.on('message', message => {
 
     // ------------- FARM COMMAND BEGIN ----------------- //
     else if (command === 'farm' || command === 'club' || command === 'stat') {
-            if (!isArray(guild)) { console.log(guild); message.reply(config.error['guild_command']+'dd: '+guild_id+guild['site']); return; }
+    	    // ----- Конфиг сервера команды отсутствует ?! --------
+            if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+            // --------
 			let nick2 = param_str;
 			if (nick2.length > 2) {
 				nick_url=encodeURI(nick2);
@@ -363,7 +365,10 @@ client.on('message', message => {
 
 	// START !BEST
 	else if ((command === 'best' || command === 'BEST') && (args[0] === undefined)) {
-		let nick2 = param_str;
+        // ----- Конфиг сервера команды отсутствует ?! --------
+        if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+
+        let nick2 = param_str;
 		if (nick2.length > 2) {
 			nick_url=encodeURI(nick2);
 			nick = nick2;
@@ -421,7 +426,10 @@ client.on('message', message => {
 
 // START !BAD
 else if ((command === 'bad' || command === 'BAD') && (args[0] === undefined)) {
-		let nick2 = param_str;
+        // ----- Конфиг сервера команды отсутствует ?! --------
+        if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+
+        let nick2 = param_str;
 		if (nick2.length > 2) {
 			nick_url=encodeURI(nick2);
 			nick = nick2;
@@ -481,6 +489,9 @@ else if ((command === 'bad' || command === 'BAD') && (args[0] === undefined)) {
 
 // START !BAD SEASON OR STEP
 else if (((command === 'bad' || command === 'best') && (args[0] === 'season' || args[0] === 'step')) || (command === 'badseason' || command === 'badstep' || command === 'beststep' || command === 'bestseason')) {
+    // ----- Конфиг сервера команды отсутствует ?! --------
+    if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+
     var param_send = null;
     if ((command === 'bad') || (command === 'best')) param_send=args[1]; else param_send=args[0];
     if  (param_send === null) param_send=0;
@@ -546,7 +557,10 @@ else if (((command === 'bad' || command === 'best') && (args[0] === 'season' || 
 
 // START !RATING
 else	if (command === 'rating' || command === 'RATING') {
-		var nick = message.guild.members.get(message.author.id).nickname;
+        // ----- Конфиг сервера команды отсутствует ?! --------
+        if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
+
+        var nick = message.guild.members.get(message.author.id).nickname;
 		var me = message.guild.members.get(message.author.id).nickname;
 		var params_url = encodeURI(param_str);
 		if (param_str.length > 2) {
@@ -646,6 +660,8 @@ else	if (command === 'rating' || command === 'RATING') {
 
 // START !TOPIC
     else if (command === 'topic' || command === 'топик') {
+        // ----- Конфиг сервера команды отсутствует ?! --------
+        if (guild == undefined) { console.log('Guild not in config!: '+guild); message.reply(config.error['guild_command']); return; }
         message.channel.send(nick+', Топик ДНЯ:\r\n'+guild['site_pub']+'/topic/'+Date.now()+'/api/vk-bot/cover/tmp.png');
         console.log('поиск топика запущен..');
     }
