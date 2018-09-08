@@ -72,7 +72,7 @@ function checkTop1(arg) {
     console.log(`Checking ${arg} ..`);
     let timer_check_top1_file;
     if (config.timer_check_top1_file>'') timer_check_top1_file = config.timer_check_top1_file;   else timer_check_top1_file = "showchannel_top1.php";
-    let url = config.guild_site+'/api/discord-bot/'+timer_check_top1_file+'?checkTop1Channel='+config.timer_check_top1_channel+'&checkTop1Table='+config.timer_check_top1_table+'&param=top1';
+    let url = guild['site']+'/api/discord-bot/'+timer_check_top1_file+'?checkTop1Channel='+config.timer_check_top1_channel+'&checkTop1Table='+config.timer_check_top1_table+'&param=top1';
     global.getdata = 'Нет данных';
     console.log('URL TIMER: ' + url);
 
@@ -367,7 +367,7 @@ client.on('message', message => {
 			nick_url=encodeURI(nick2);
 			nick = nick2;
 		}
-		var url = config.guild_site+'/api/discord-bot/getbest.php?name='+nick_url;
+		var url = guild['site']+'/api/discord-bot/getbest.php?name='+nick_url;
 		global.getdata = 'Нет данных';
 
 	const request = require('request');
@@ -425,7 +425,7 @@ else if ((command === 'bad' || command === 'BAD') && (args[0] === undefined)) {
 			nick_url=encodeURI(nick2);
 			nick = nick2;
 		}
-		var url = config.guild_site+'/api/discord-bot/getbad.php?name='+nick_url;
+		var url = guild['site']+'/api/discord-bot/getbad.php?name='+nick_url;
 		global.getdata = 'Нет данных';
 
 	const request = require('request');
@@ -486,10 +486,10 @@ else if (((command === 'bad' || command === 'best') && (args[0] === 'season' || 
     //console.log('0-'+args[0]+'1-'+args[1]);
 
 		var url = '';
-	 	if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = config.guild_site+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-		else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = config.guild_site+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-		else if (((command==='best')&&(args[0]==='step')) || (command==='beststep')) url = config.guild_site+'/api/discord-bot/getbeststep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
-		else if (((command==='best')&&(args[0]==='season')) || (command==='bestseason')) url = config.guild_site+'/api/discord-bot/getbestseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+	 	if (((command==='bad')&&(args[0]==='season')) || (command==='badseason')) url = guild['site']+'/api/discord-bot/getbadseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+		else if (((command==='bad')&&(args[0]==='step')) || (command==='badstep')) url = guild['site']+'/api/discord-bot/getbadstep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+		else if (((command==='best')&&(args[0]==='step')) || (command==='beststep')) url = guild['site']+'/api/discord-bot/getbeststep.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
+		else if (((command==='best')&&(args[0]==='season')) || (command==='bestseason')) url = guild['site']+'/api/discord-bot/getbestseason.php?name='+nick_url+'&stage='+args[0]+'&param='+param_send;
 		global.getdata = 'Нет данных';
 		console.log('URL: ' + url);
 
@@ -551,7 +551,7 @@ else	if (command === 'rating' || command === 'RATING') {
 		if (param_str.length > 2) {
 			params=encodeURI(nick);
 		}
-		var url = config.guild_site+'/api/discord-bot/getrating.php?name='+nick_url+'&param2='+params_url;
+		var url = guild['site']+'/api/discord-bot/getrating.php?name='+nick_url+'&param2='+params_url;
 		global.getdata = 'Нет данных';
 
 	const request = require('request');
@@ -645,7 +645,7 @@ else	if (command === 'rating' || command === 'RATING') {
 
 // START !TOPIC
     else if (command === 'topic' || command === 'топик') {
-        message.channel.send(nick+', Топик ДНЯ:\r\n'+config.guild_site_pub+'/topic/'+Date.now()+'/api/vk-bot/cover/tmp.png');
+        message.channel.send(nick+', Топик ДНЯ:\r\n'+guild['site_pub']+'/topic/'+Date.now()+'/api/vk-bot/cover/tmp.png');
         console.log('поиск топика запущен..');
     }
 // END !TOPIC
